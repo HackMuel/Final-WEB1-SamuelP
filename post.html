@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Posts - Jollibee Clone</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+</head>
+<body class="bg-gray-100">
+  <!-- Header -->
+  <header class="bg-red-600 text-white py-4 px-8">
+    <div class="flex justify-between items-center">
+        <img src="logo.png" alt="Jollibee Logo" class="w-24">
+        <nav>
+            <ul class="flex space-x-6">
+                <li><a href="index.html" class="hover:text-yellow-400">Home</a></li>
+                <li><a href="freepage.html" class="hover:text-yellow-400">Pesan</a></li>
+                <li><a href="biodata.html" class="hover:text-yellow-400">Biodata</a></li>
+                <li><a href="contact_us.html" class="hover:text-yellow-400">Contact Us</a></li>
+                <li><a href="post.html" class="hover:text-yellow-400">Post</a></li>
+            </ul>
+        </nav>
+    </div>
+  </header>
+
+  <!-- Greeting -->
+  <div id="greeting" class="text-center text-lg font-medium mt-4"></div>
+
+  <!-- Posts Section -->
+  <section class="container mx-auto p-4">
+    <div class="bg-white p-6 rounded shadow">
+      <h2 class="text-2xl font-bold text-center mb-6">Posts</h2>
+      <div id="postsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Posts will be loaded here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-red-600 text-white py-8">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+            <!-- Kolom 1 -->
+            <div>
+                <h4 class="font-semibold text-lg">About Us</h4>
+                <ul>
+                    <li><a href="#" class="text-white hover:underline">Our Story</a></li>
+                    <li><a href="#" class="text-white hover:underline">Careers</a></li>
+                    <li><a href="#" class="text-white hover:underline">News</a></li>
+                    <li><a href="#" class="text-white hover:underline">Contact Us</a></li>
+                </ul>
+            </div>
+            <!-- Kolom 2 -->
+            <div>
+                <h4 class="font-semibold text-lg">Customer Service</h4>
+                <ul>
+                    <li><a href="#" class="text-white hover:underline">FAQ</a></li>
+                    <li><a href="#" class="text-white hover:underline">Order Tracking</a></li>
+                    <li><a href="#" class="text-white hover:underline">Delivery Information</a></li>
+                </ul>
+            </div>
+            <!-- Kolom 3 -->
+            <div>
+                <h4 class="font-semibold text-lg">Follow Us</h4>
+                <ul>
+                    <li><a href="#" class="text-white hover:underline">Facebook</a></li>
+                    <li><a href="#" class="text-white hover:underline">Instagram</a></li>
+                    <li><a href="#" class="text-white hover:underline">Twitter</a></li>
+                    <li><a href="#" class="text-white hover:underline">YouTube</a></li>
+                </ul>
+            </div>
+            <!-- Kolom 4 -->
+            <div>
+                <h4 class="font-semibold text-lg">Legal</h4>
+                <ul>
+                    <li><a href="https://fti.unai.edu/" class="text-white hover:underline" target="_blank">FTI UNAI</a></li>
+                    <li><a href="https://unai.edu/" class="text-white hover:underline" target="_blank">UNAI Website</a></li>
+                    <li><a href="#" class="text-white hover:underline">Privacy Policy</a></li>
+                    <li><a href="#" class="text-white hover:underline">Terms & Conditions</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="bg-red-700 text-center py-4 mt-8">
+        <p>&copy; 2024 Samuel Pardosi S,Kom.</p>
+    </div>
+  </footer>
+
+  <!-- Fetch API and JavaScript -->
+  <script>
+    // Initialize AOS for scroll animations
+    AOS.init();
+
+    // Fetch API to load posts with a loading spinner
+    const postsContainer = document.getElementById("postsContainer");
+    const API_URL = "https://jsonplaceholder.typicode.com/posts"; 
+
+    const loadingIndicator = document.createElement("div");
+    loadingIndicator.classList.add("text-center", "text-gray-600");
+    loadingIndicator.innerHTML = "Memuat data...";
+    postsContainer.appendChild(loadingIndicator);
+
+    fetch(API_URL)
+      .then(response => response.json())
+      .then(data => {
+        postsContainer.innerHTML = ''; // Clear loading indicator
+        if (Array.isArray(data)) {
+          data.forEach(post => {
+            const postCard = document.createElement("div");
+            postCard.classList.add("post-card", "bg-gray-50", "p-6", "rounded-lg", "shadow-lg", "transition-all", "hover:scale-105", "transform", "hover:bg-yellow-100", "duration-300");
+            postCard.setAttribute("data-aos", "fade-up");
+
+            postCard.innerHTML = `
+              <h3 class="font-bold text-xl text-gray-800">${post.title}</h3>
+              <p class="text-sm text-gray-600 mt-2">${post.body}</p>
+            `;
+            postsContainer.appendChild(postCard);
+          });
+        } else {
+          postsContainer.innerHTML = `<p class="text-center">Tidak ada data yang ditemukan.</p>`;
+        }
+      })
+      .catch(error => {
+        console.error("Error fetching posts:", error);
+        postsContainer.innerHTML = `<p class="text-center text-red-600">Gagal memuat data. Silakan coba lagi nanti.</p>`;
+      });
+
+    // Greeting based on time
+    const hours = new Date().getHours();
+    const greeting = document.getElementById('greeting');
+    if (hours < 12) {
+      greeting.textContent = "Selamat Pagi!";
+    } else if (hours < 18) {
+      greeting.textContent = "Selamat Siang!";
+    } else {
+      greeting.textContent = "Selamat Sore!";
+    }
+  </script>
+</body>
+</html>

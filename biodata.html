@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biodata - Jollibee Clone</title>
+  <script src="script.js" defer></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .photo-hover:hover {
+      transform: scale(1.1);
+      transition: transform 0.3s ease-in-out;
+    }
+    .skill-item {
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+    .skill-item:hover {
+      transform: translateY(-5px);
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+
+  <!-- Header -->
+  <header class="bg-red-600 text-white py-4 px-8">
+    <div class="flex justify-between items-center">
+        <img src="logo.png" alt="Jollibee Logo" class="w-24">
+        <nav>
+            <ul class="flex space-x-6">
+                <li><a href="index.html" class="hover:text-yellow-400">Home</a></li>
+                <li><a href="freepage.html" class="hover:text-yellow-400">Pesan</a></li>
+                <li><a href="biodata.html" class="hover:text-yellow-400">Biodata</a></li>
+                <li><a href="contact_us.html" class="hover:text-yellow-400">Contact Us</a></li>
+                <li><a href="post.html" class="hover:text-yellow-400">Post</a></li>
+            </ul>
+        </nav>
+    </div>
+  </header>
+
+  <!-- Greeting -->
+  <div id="greeting" class="text-center text-lg font-medium mt-4"></div>
+
+  <!-- Biodata Section -->
+  <section class="container mx-auto p-4">
+    <div class="bg-white p-6 rounded shadow-lg transform transition duration-500 hover:scale-105">
+      <h2 class="text-2xl font-bold text-center mb-6">Biodata</h2>
+      <div class="flex flex-col md:flex-row items-center">
+        <!-- Photo -->
+        <div class="w-full md:w-1/3 flex justify-center mb-6 md:mb-0">
+          <img src="sam.jpg" alt="Photo" class="rounded-full w-40 h-40 object-cover photo-hover">
+        </div>
+        <!-- Personal Info -->
+        <div class="w-full md:w-2/3">
+          <p class="text-lg mb-2"><strong>Nama:</strong> Samuel Pardosi</p>
+          <p class="text-lg mb-2"><strong>NIM:</strong> 2381008</p>
+          <p class="text-lg mb-2"><strong>Fakultas:</strong> Teknologi Informasi</p>
+          <p class="text-lg mb-2"><strong>Hobi:</strong> Bermain game, Membaca, Naik GUNUNG</p>
+          <p class="text-lg mb-2"><strong>Keterampilan:</strong></p>
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div class="bg-red-600 text-white p-4 rounded-lg skill-item text-center">Pemrograman Web</div>
+            <div class="bg-red-600 text-white p-4 rounded-lg skill-item text-center">Analisis Data</div>
+            <div class="bg-red-600 text-white p-4 rounded-lg skill-item text-center">UI/UX Design</div>
+            <div class="bg-red-600 text-white p-4 rounded-lg skill-item text-center">Database</div>
+            <div class="bg-red-600 text-white p-4 rounded-lg skill-item text-center">SEO</div>
+            <div class="bg-red-600 text-white p-4 rounded-lg skill-item text-center">Machine Learning</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Testimonial Section -->
+    <div class="bg-gray-50 mt-6 p-6 rounded shadow-lg opacity-0 hover:opacity-100 transition-opacity">
+      <h3 class="text-xl font-bold mb-4">Testimonial</h3>
+      <p>
+        "Bergabung di kelas ini memberikan saya banyak pelajaran berharga, khususnya dalam memahami
+        bagaimana teknologi dapat diterapkan dalam kehidupan sehari-hari. Terima kasih kepada semua
+        dosen yang telah membimbing kami dengan sabar."
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-red-600 text-white py-8">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+            <div>
+                <h4 class="font-semibold text-lg">About Us</h4>
+                <ul>
+                    <li><a href="#" class="text-white hover:underline">Our Story</a></li>
+                    <li><a href="#" class="text-white hover:underline">Careers</a></li>
+                    <li><a href="#" class="text-white hover:underline">News</a></li>
+                    <li><a href="#" class="text-white hover:underline">Contact Us</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-semibold text-lg">Customer Service</h4>
+                <ul>
+                    <li><a href="#" class="text-white hover:underline">FAQ</a></li>
+                    <li><a href="#" class="text-white hover:underline">Order Tracking</a></li>
+                    <li><a href="#" class="text-white hover:underline">Delivery Information</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-semibold text-lg">Follow Us</h4>
+                <ul>
+                    <li><a href="#" class="text-white hover:underline">Facebook</a></li>
+                    <li><a href="#" class="text-white hover:underline">Instagram</a></li>
+                    <li><a href="#" class="text-white hover:underline">Twitter</a></li>
+                    <li><a href="#" class="text-white hover:underline">YouTube</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-semibold text-lg">Legal</h4>
+                <ul>
+                    <li><a href="https://fti.unai.edu/" class="text-white hover:underline" target="_blank">FTI UNAI</a></li>
+                    <li><a href="https://unai.edu/" class="text-white hover:underline" target="_blank">UNAI Website</a></li>
+                    <li><a href="#" class="text-white hover:underline">Privacy Policy</a></li>
+                    <li><a href="#" class="text-white hover:underline">Terms & Conditions</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="bg-red-700 text-center py-4 mt-8">
+        <p>&copy; 2024 Samuel Pardosi S,Kom.</p>
+    </div>
+  </footer>
+
+  <!-- Greeting Script -->
+  <script>
+    // Greeting based on time
+    const hours = new Date().getHours();
+    const greeting = document.getElementById('greeting');
+    if (hours < 12) {
+      greeting.textContent = "Selamat Pagi!";
+    } else if (hours < 18) {
+      greeting.textContent = "Selamat Siang!";
+    } else {
+      greeting.textContent = "Selamat Sore!";
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pesan - Jollibee Clone</title>
+  <script src="script.js" defer></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    /* Animation for card hover */
+    .menu-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .menu-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+  <!-- Header -->
+  <header class="bg-red-600 text-white py-4 px-8">
+    <div class="flex justify-between items-center">
+      <img src="logo.png" alt="Jollibee Logo" class="w-24">
+      <nav>
+        <ul class="flex space-x-6">
+          <li><a href="index.html" class="hover:text-yellow-400">Home</a></li>
+          <li><a href="freepage.html" class="hover:text-yellow-400">Pesan</a></li>
+          <li><a href="biodata.html" class="hover:text-yellow-400">Biodata</a></li>
+          <li><a href="contact_us.html" class="hover:text-yellow-400">Contact Us</a></li>
+          <li><a href="post.html" class="hover:text-yellow-400">Post</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Greeting -->
+  <div id="greeting" class="text-center text-lg font-medium mt-4"></div>
+
+  <!-- Delivery Section -->
+  <section class="container mx-auto p-4">
+    <div class="bg-white p-6 rounded shadow">
+      <h2 class="text-2xl font-bold text-center mb-6">Pesan Pengantaran</h2>
+      
+      <!-- Location Picker -->
+      <div class="mb-6">
+        <h3 class="text-xl mb-2">Pilih Lokasi Pengiriman</h3>
+        <div id="map" class="h-64 w-full mb-4 rounded shadow"></div>
+        <p id="locationOutput" class="text-gray-700 font-medium">Lokasi belum dipilih</p>
+      </div>
+
+      <!-- Menu Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-6">
+        <!-- Chickenjoy Card -->
+        <div class="bg-white p-4 rounded shadow hover:shadow-lg menu-card">
+          <div class="flex justify-center mb-4">
+            <img src="chikenjoy.jpg" alt="Chickenjoy Icon" class="w-50 h-50">
+          </div>
+          <h4 class="text-lg font-semibold text-center mb-2">Chickenjoy</h4>
+          <p class="text-gray-600 text-center mb-4">Rp 30,000</p>
+          <p class="text-gray-500 text-center mb-4">Crispy fried chicken served with gravy.</p>
+          <button class="bg-red-600 text-white px-4 py-2 mt-4 rounded flex items-center justify-center space-x-2 addToCartBtn" data-name="Chickenjoy" data-price="30000">
+            <span>Tambah ke Keranjang</span>
+          </button>
+        </div>
+        
+        <!-- Burger Steak Card -->
+        <div class="bg-white p-4 rounded shadow hover:shadow-lg menu-card">
+          <div class="flex justify-center mb-4">
+            <img src="burger.jpg" alt="Burger Steak Icon" class="w-50 h-50">
+          </div>
+          <h4 class="text-lg font-semibold text-center mb-2">Burger Steak</h4>
+          <p class="text-gray-600 text-center mb-4">Rp 25,000</p>
+          <p class="text-gray-500 text-center mb-4">Savory burger patties served with gravy and steamed rice.</p>
+          <button class="bg-red-600 text-white px-4 py-2 mt-4 rounded flex items-center justify-center space-x-2 addToCartBtn" data-name="Burger Steak" data-price="25000">
+            <span>Tambah ke Keranjang</span>
+          </button>
+        </div>
+
+        <!-- Spaghetti Card -->
+        <div class="bg-white p-4 rounded shadow hover:shadow-lg menu-card">
+          <div class="flex justify-center mb-4">
+            <img src="spaghetti.jpg" alt="Spaghetti Icon" class="w-50 h-50">
+          </div>
+          <h4 class="text-lg font-semibold text-center mb-2">Spaghetti</h4>
+          <p class="text-gray-600 text-center mb-4">Rp 20,000</p>
+          <p class="text-gray-500 text-center mb-4">Classic spaghetti with sweet tomato sauce and meatballs.</p>
+          <button class="bg-red-600 text-white px-4 py-2 mt-4 rounded flex items-center justify-center space-x-2 addToCartBtn" data-name="Spaghetti" data-price="20000">
+            <span>Tambah ke Keranjang</span>
+          </button>
+        </div>
+
+        <!-- Halo-Halo Card -->
+        <div class="bg-white p-4 rounded shadow hover:shadow-lg menu-card">
+          <div class="flex justify-center mb-4">
+            <img src="halo-halo.jpg" alt="Halo-Halo Icon" class="w-50 h-50">
+          </div>
+          <h4 class="text-lg font-semibold text-center mb-2">Halo-Halo</h4>
+          <p class="text-gray-600 text-center mb-4">Rp 15,000</p>
+          <p class="text-gray-500 text-center mb-4">A refreshing Filipino dessert with mixed fruits, shaved ice, and sweet beans.</p>
+          <button class="bg-red-600 text-white px-4 py-2 mt-4 rounded flex items-center justify-center space-x-2 addToCartBtn" data-name="Halo-Halo" data-price="15000">
+            <span>Tambah ke Keranjang</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Cart Summary -->
+      <div class="bg-gray-200 p-4 rounded shadow mt-6">
+        <h3 class="text-xl font-semibold mb-4">Keranjang Belanja</h3>
+        <ul id="cartItems" class="space-y-2 text-gray-700">
+          <!-- Items will appear here -->
+        </ul>
+        <div class="text-right font-semibold">
+          <p>Total: <span id="totalPrice">Rp 0</span></p>
+        </div>
+        <button id="placeOrderBtn" class="bg-red-600 text-white px-4 py-2 mt-4 rounded">Order Sekarang</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-red-600 text-white py-8">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+            <!-- Kolom 1 -->
+            <div>
+                <h4 class="font-semibold text-lg">About Us</h4>
+                <ul>
+                    <li><a href="#" class="text-white hover:underline">Our Story</a></li>
+                    <li><a href="#" class="text-white hover:underline">Careers</a></li>
+                    <li><a href="#" class="text-white hover:underline">News</a></li>
+                    <li><a href="#" class="text-white hover:underline">Contact Us</a></li>
+                </ul>
+            </div>
+            <!-- Kolom 2 -->
+            <div>
+                <h4 class="font-semibold text-lg">Customer Service</h4>
+                <ul>
+                    <li><a href="#" class="text-white hover:underline">FAQ</a></li>
+                    <li><a href="#" class="text-white hover:underline">Order Tracking</a></li>
+                    <li><a href="#" class="text-white hover:underline">Delivery Information</a></li>
+                </ul>
+            </div>
+            <!-- Kolom 3 -->
+            <div>
+                <h4 class="font-semibold text-lg">Follow Us</h4>
+                <ul>
+                    <li><a href="#" class="text-white hover:underline">Facebook</a></li>
+                    <li><a href="#" class="text-white hover:underline">Instagram</a></li>
+                    <li><a href="#" class="text-white hover:underline">Twitter</a></li>
+                    <li><a href="#" class="text-white hover:underline">YouTube</a></li>
+                </ul>
+            </div>
+            <!-- Kolom 4 -->
+            <div>
+                <h4 class="font-semibold text-lg">Legal</h4>
+                <ul>
+                    <li><a href="https://fti.unai.edu/" class="text-white hover:underline" target="_blank">FTI UNAI</a></li>
+                    <li><a href="https://unai.edu/" class="text-white hover:underline" target="_blank">UNAI Website</a></li>
+                    <li><a href="#" class="text-white hover:underline">Privacy Policy</a></li>
+                    <li><a href="#" class="text-white hover:underline">Terms & Conditions</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="bg-red-700 text-center py-4 mt-8">
+        <p>&copy; 2024 Samuel Pardosi S,Kom.</p>
+    </div>
+</footer>
+  <!-- Script -->
+  <script>
+    // Menunggu sampai DOM selesai dimuat
+    document.addEventListener("DOMContentLoaded", function () {
+      initMap();
+    });
+
+    // Inisialisasi peta dengan Leaflet
+    let map;
+    let selectedLocation = null;
+
+    function initMap() {
+      map = L.map('map').setView([-7.288534, 112.593717], 15);
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      }).addTo(map);
+
+      const marker = L.marker([-7.288534, 112.593717], { draggable: true }).addTo(map);
+
+      marker.on('dragend', function () {
+        const position = marker.getLatLng();
+        selectedLocation = position;
+        document.getElementById("locationOutput").textContent = `Lokasi: ${position.lat.toFixed(4)}, ${position.lng.toFixed(4)}`;
+      });
+    }
+
+    // Pengelolaan Keranjang Belanja
+    const cart = [];
+    const cartItemsElement = document.getElementById("cartItems");
+    const totalPriceElement = document.getElementById("totalPrice");
+        // Menambahkan item ke keranjang
+        const addToCartBtns = document.querySelectorAll(".addToCartBtn");
+    addToCartBtns.forEach(button => {
+      button.addEventListener("click", function () {
+        const itemName = button.getAttribute("data-name");
+        const itemPrice = parseInt(button.getAttribute("data-price"));
+
+        // Menambahkan item ke array cart
+        cart.push({ name: itemName, price: itemPrice });
+
+        // Menampilkan item dalam keranjang
+        updateCart();
+      });
+    });
+
+    // Mengupdate tampilan keranjang
+    function updateCart() {
+      cartItemsElement.innerHTML = "";
+      let total = 0;
+
+      cart.forEach(item => {
+        const listItem = document.createElement("li");
+        listItem.textContent = `${item.name} - Rp ${item.price.toLocaleString()}`;
+        cartItemsElement.appendChild(listItem);
+        total += item.price;
+      });
+
+      totalPriceElement.textContent = `Rp ${total.toLocaleString()}`;
+    }
+
+    // Fungsi untuk melakukan pemesanan
+    document.getElementById("placeOrderBtn").addEventListener("click", function () {
+      if (cart.length === 0) {
+        alert("Keranjang masih kosong!");
+        return;
+      }
+
+      if (selectedLocation) {
+        alert(`Pesanan berhasil! Total: Rp ${totalPriceElement.textContent}, Lokasi Pengiriman: ${selectedLocation.lat.toFixed(4)}, ${selectedLocation.lng.toFixed(4)}`);
+        cart.length = 0; // Kosongkan keranjang setelah pemesanan
+        updateCart(); // Update tampilan keranjang
+      } else {
+        alert("Pilih lokasi pengiriman terlebih dahulu.");
+      }
+    });
+  </script>
+</body>
+</html>

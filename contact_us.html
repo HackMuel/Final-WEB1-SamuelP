@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Jollibee Clone</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    function validateForm() {
+      let isValid = true;
+      let elements = document.querySelectorAll(".required");
+      elements.forEach(function(element) {
+        const errorMessage = element.nextElementSibling;
+        if (!element.value.trim()) {
+          errorMessage.textContent = "Field ini wajib diisi!";
+          element.classList.add("animate-shake");
+          isValid = false;
+        } else {
+          errorMessage.textContent = "";
+          element.classList.remove("animate-shake");
+        }
+      });
+      const email = document.getElementById("email");
+      const phone = document.getElementById("phone");
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const phonePattern = /^\d+$/;
+
+      if (!emailPattern.test(email.value.trim())) {
+        document.getElementById("emailError").textContent = "Format email tidak valid.";
+        isValid = false;
+      } else {
+        document.getElementById("emailError").textContent = "";
+      }
+
+      if (!phonePattern.test(phone.value.trim()) || phone.value.trim().length < 10) {
+        document.getElementById("phoneError").textContent = "Nomor telepon harus angka dan minimal 10 digit.";
+        isValid = false;
+      } else {
+        document.getElementById("phoneError").textContent = "";
+      }
+
+      return isValid;
+    }
+
+    // Greeting based on time
+    window.onload = function() {
+      const hours = new Date().getHours();
+      const greeting = document.getElementById('greeting');
+      if (hours < 12) {
+        greeting.textContent = "Selamat Pagi!";
+      } else if (hours < 18) {
+        greeting.textContent = "Selamat Siang!";
+      } else {
+        greeting.textContent = "Selamat Sore!";
+      }
+    };
+  </script>
+  <style>
+    .animate-shake {
+      animation: shake 0.3s ease-in-out;
+    }
+
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-5px); }
+      100% { transform: translateX(0); }
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+  <!-- Header -->
+  <header class="bg-red-600 text-white py-4 px-8">
+    <div class="flex justify-between items-center">
+        <img src="logo.png" alt="Jollibee Logo" class="w-24">
+        <nav>
+            <ul class="flex space-x-6">
+                <li><a href="index.html" class="hover:text-yellow-400">Home</a></li>
+                <li><a href="freepage.html" class="hover:text-yellow-400">Pesan</a></li>
+                <li><a href="biodata.html" class="hover:text-yellow-400">Biodata</a></li>
+                <li><a href="contact_us.html" class="hover:text-yellow-400">Contact Us</a></li>
+                <li><a href="post.html" class="hover:text-yellow-400">Post</a></li>
+            </ul>
+        </nav>
+    </div>
+  </header>
+
+  <!-- Greeting -->
+  <div id="greeting" class="text-center text-lg font-medium mt-4"></div>
+
+  <!-- Contact Form -->
+  <section class="container mx-auto p-4">
+    <div class="bg-white p-6 rounded shadow">
+      <h2 class="text-2xl font-bold text-center mb-6">Formulir Pendaftaran Mahasiswa</h2>
+      <form id="registrationForm" class="space-y-4" onsubmit="return validateForm()">
+        <div>
+          <label for="fullName" class="block font-medium">Nama Lengkap</label>
+          <input type="text" id="fullName" class="w-full p-2 border rounded required" placeholder="Masukkan nama lengkap">
+          <small class="text-red-600"></small>
+        </div>
+        <div>
+          <label for="nim" class="block font-medium">NIM</label>
+          <input type="text" id="nim" class="w-full p-2 border rounded required" placeholder="Masukkan NIM">
+          <small class="text-red-600"></small>
+        </div>
+        <div>
+          <label for="email" class="block font-medium">Alamat Email</label>
+          <input type="email" id="email" class="w-full p-2 border rounded required" placeholder="Masukkan email">
+          <small id="emailError" class="text-red-600"></small>
+        </div>
+        <div>
+          <label for="faculty" class="block font-medium">Fakultas/Jurusan</label>
+          <select id="faculty" class="w-full p-2 border rounded required">
+            <option value="">Pilih Fakultas</option>
+            <option value="Ekonomi">Ekonomi</option>
+            <option value="Teknik">Teknik</option>
+            <option value="Kedokteran">Kedokteran</option>
+          </select>
+          <small class="text-red-600"></small>
+        </div>
+        <div>
+          <label for="dob" class="block font-medium">Tanggal Lahir</label>
+          <input type="date" id="dob" class="w-full p-2 border rounded required">
+          <small class="text-red-600"></small>
+        </div>
+        <div>
+          <label class="block font-medium">Jenis Kelamin</label>
+          <div class="flex space-x-4">
+            <label><input type="radio" name="gender" value="Laki-laki" class="mr-2"> Laki-laki</label>
+            <label><input type="radio" name="gender" value="Perempuan" class="mr-2"> Perempuan</label>
+          </div>
+          <small class="text-red-600"></small>
+        </div>
+        <div>
+          <label for="address" class="block font-medium">Alamat</label>
+          <textarea id="address" class="w-full p-2 border rounded required" placeholder="Masukkan alamat"></textarea>
+          <small class="text-red-600"></small>
+        </div>
+        <div>
+          <label for="phone" class="block font-medium">Nomor Telepon</label>
+          <input type="text" id="phone" class="w-full p-2 border rounded required" placeholder="Masukkan nomor telepon">
+          <small id="phoneError" class="text-red-600"></small>
+        </div>
+        <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
+          Submit
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-red-600 text-white py-8">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+            <!-- Kolom 1 -->
+            <div>
+                <h4 class="font-semibold text-lg">About Us</h4>
+                <ul>
+                    <li><a href="#" class="text-white hover:underline">Our Story</a></li>
+                    <li><a href="#" class="text-white hover:underline">Careers</a></li>
+                    <li><a href="#" class="text-white hover:underline">News</a></li>
+                    <li><a href="#" class="text-white hover:underline">Contact Us</a></li>
+                </ul>
+            </div>
+            <!-- Kolom 2 -->
+            <div>
+                <h4 class="font-semibold text-lg">Customer Service</h4>
+                <ul>
+                    <li><a href="#" class="text-white hover:underline">FAQ</a></li>
+                    <li><a href="#" class="text-white hover:underline">Order Tracking</a></li>
+                    <li><a href="#" class="text-white hover:underline">Delivery Information</a></li>
+                </ul>
+            </div>
+            <!-- Kolom 3 -->
+            <div>
+                <h4 class="font-semibold text-lg">Follow Us</h4>
+                <ul>
+                    <li><a href="#" class="text-white hover:underline">Facebook</a></li>
+                    <li><a href="#" class="text-white hover:underline">Instagram</a></li>
+                    <li><a href="#" class="text-white hover:underline">Twitter</a></li>
+                    <li><a href="#" class="text-white hover:underline">YouTube</a></li>
+                </ul>
+            </div>
+            <!-- Kolom 4 -->
+            <div>
+                <h4 class="font-semibold text-lg">Legal</h4>
+                <ul>
+                    <li><a href="https://fti.unai.edu/" class="text-white hover:underline" target="_blank">FTI UNAI</a></li>
+                    <li><a href="https://unai.edu/" class="text-white hover:underline" target="_blank">UNAI Website</a></li>
+                    <li><a href="#" class="text-white hover:underline">Privacy Policy</a></li>
+                    <li><a href="#" class="text-white hover:underline">Terms & Conditions</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="bg-red-700 text-center py-4 mt-8">
+        <p>&copy; 2024 Samuel Pardosi S,Kom.</p>
+    </div>
+</footer>
+</body>
+</html>

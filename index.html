@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jollibee Clone</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        function greetUser() {
+            const hour = new Date().getHours();
+            let greeting;
+
+            if (hour < 12) {
+                greeting = 'Good Morning';
+            } else if (hour < 18) {
+                greeting = 'Good Afternoon';
+            } else {
+                greeting = 'Good Evening';
+            }
+
+            document.getElementById('greeting').innerText = greeting;
+        }
+
+        window.onload = greetUser;
+    </script>
+</head>
+<body class="bg-white">
+
+    <!-- Header Section -->
+    <header class="bg-red-600 text-white py-4 px-8">
+        <div class="flex justify-between items-center">
+            <img src="logo.png" alt="Jollibee Logo" class="w-24">
+            <nav>
+                <ul class="flex space-x-6">
+                    <li><a href="index.html" class="hover:text-yellow-400">Home</a></li>
+                    <li><a href="freepage.html" class="hover:text-yellow-400">Pesan</a></li>
+                    <li><a href="biodata.html" class="hover:text-yellow-400">Biodata</a></li>
+                    <li><a href="contact_us.html" class="hover:text-yellow-400">Contact Us</a></li>
+                    <li><a href="post.html" class="hover:text-yellow-400">Post</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Greeting Section -->
+    <section id="greeting" class="text-center mt-8 text-2xl font-bold"></section>
+
+    <!-- Hero Section -->
+    <section class="relative bg-cover bg-center h-96" style="background-image: url('hero-image.jpg');">
+        <div class="absolute inset-0 bg-black opacity-50"></div>
+        <div class="relative text-center text-white py-32">
+            <h1 class="text-4xl font-bold">Bringing Joy to You</h1>
+            <p class="mt-4 text-lg">Enjoy our delicious meals, delivered straight to your door</p>
+            <a href="#menu" class="mt-6 inline-block bg-yellow-400 text-black py-2 px-6 rounded-full hover:bg-yellow-500">Order Now</a>
+        </div>
+    </section>
+
+    <!-- Featured Items Section -->
+    <section id="menu" class="py-16 bg-white">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-8">Our Featured Items</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <img src="chikenjoy.jpg" alt="Chickenjoy" class="w-full h-48 object-cover rounded-t-lg">
+                    <h3 class="text-xl font-semibold mt-4">Chickenjoy</h3>
+                    <p class="text-gray-600 mt-2">Crispy fried chicken served with gravy.</p>
+                    <a href="#" class="mt-6 inline-block bg-red-600 text-white py-2 px-6 rounded-full hover:bg-red-700">Order Now</a>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <img src="spaghetti.jpg" alt="Spaghetti" class="w-full h-48 object-cover rounded-t-lg">
+                    <h3 class="text-xl font-semibold mt-4">Spaghetti</h3>
+                    <p class="text-gray-600 mt-2">Sweet-style spaghetti served with savory meat sauce.</p>
+                    <a href="#" class="mt-6 inline-block bg-red-600 text-white py-2 px-6 rounded-full hover:bg-red-700">Order Now</a>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <img src="burger.jpg" alt="Burger Steak" class="w-full h-48 object-cover rounded-t-lg">
+                    <h3 class="text-xl font-semibold mt-4">Burger Steak</h3>
+                    <p class="text-gray-600 mt-2">Juicy burgers served with mushroom gravy.</p>
+                    <a href="#" class="mt-6 inline-block bg-red-600 text-white py-2 px-6 rounded-full hover:bg-red-700">Order Now</a>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <img src="halo-halo.jpg" alt="Halo Halo" class="w-full h-48 object-cover rounded-t-lg">
+                    <h3 class="text-xl font-semibold mt-4">Halo Halo</h3>
+                    <p class="text-gray-600 mt-2">A delightful mix of sweet and creamy ingredients.</p>
+                    <a href="#" class="mt-6 inline-block bg-red-600 text-white py-2 px-6 rounded-full hover:bg-red-700">Order Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order & Pick Up Section -->
+    <section class="bg-gray-200 py-16 text-center">
+        <h2 class="text-3xl font-bold">Order & Pick Up</h2>
+        <p class="mt-4 text-lg">Order your Jollibee favorites and pick them up at your nearest branch.</p>
+        <a href="#menu" class="mt-6 inline-block bg-red-600 text-white py-2 px-6 rounded-full hover:bg-red-700">Order Now</a>
+    </section>
+
+    <!-- Download the App Section -->
+    <section class="bg-yellow-400 py-16 text-center">
+        <h2 class="text-3xl font-bold text-white">Download the Jollibee App</h2>
+        <p class="mt-4 text-lg text-white">Order easily and enjoy exclusive offers!</p>
+        <a href="#" class="mt-6 inline-block bg-white text-black py-2 px-6 rounded-full hover:bg-gray-200">Download Now</a>
+    </section>
+
+    <!-- Call #87000 Section -->
+    <section class="bg-gray-100 py-16 text-center">
+        <h2 class="text-3xl font-bold">Call #87000</h2>
+        <p class="mt-4 text-lg">For deliveries and orders, just call #87000!</p>
+        <a href="tel:#87000" class="mt-6 inline-block bg-red-600 text-white py-2 px-6 rounded-full hover:bg-red-700">Call Now</a>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-red-600 text-white py-8">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+                <!-- Kolom 1 -->
+                <div>
+                    <h4 class="font-semibold text-lg">About Us</h4>
+                    <ul>
+                        <li><a href="#" class="text-white hover:underline">Our Story</a></li>
+                        <li><a href="#" class="text-white hover:underline">Careers</a></li>
+                        <li><a href="#" class="text-white hover:underline">News</a></li>
+                        <li><a href="#" class="text-white hover:underline">Contact Us</a></li>
+                    </ul>
+                </div>
+                <!-- Kolom 2 -->
+                <div>
+                    <h4 class="font-semibold text-lg">Customer Service</h4>
+                    <ul>
+                        <li><a href="#" class="text-white hover:underline">FAQ</a></li>
+                        <li><a href="#" class="text-white hover:underline">Order Tracking</a></li>
+                        <li><a href="#" class="text-white hover:underline">Delivery Information</a></li>
+                    </ul>
+                </div>
+                <!-- Kolom 3 -->
+                <div>
+                    <h4 class="font-semibold text-lg">Follow Us</h4>
+                    <ul>
+                        <li><a href="#" class="text-white hover:underline">Facebook</a></li>
+                        <li><a href="#" class="text-white hover:underline">Instagram</a></li>
+                        <li><a href="#" class="text-white hover:underline">Twitter</a></li>
+                        <li><a href="#" class="text-white hover:underline">YouTube</a></li>
+                    </ul>
+                </div>
+                <!-- Kolom 4 -->
+                <div>
+                    <h4 class="font-semibold text-lg">Legal</h4>
+                    <ul>
+                        <li><a href="https://fti.unai.edu/" class="text-white hover:underline" target="_blank">FTI UNAI</a></li>
+                        <li><a href="https://unai.edu/" class="text-white hover:underline" target="_blank">UNAI Website</a></li>
+                        <li><a href="#" class="text-white hover:underline">Privacy Policy</a></li>
+                        <li><a href="#" class="text-white hover:underline">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="bg-red-700 text-center py-4 mt-8">
+            <p>&copy; 2024 Samuel Pardosi S,Kom.</p>
+        </div>
+    </footer>
+    
+    </body>
+    </html>
+    
